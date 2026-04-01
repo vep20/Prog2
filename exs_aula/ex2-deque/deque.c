@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "deque.h"
 
 struct deque *cria(){
@@ -30,11 +32,11 @@ void insere_inicio (struct deque *d, char item){
     struct deque_nodo *aux;
 
     if (!d)
-        return;
+        exit (1);
 
     aux = malloc (sizeof (struct deque_nodo));
     if (!aux)
-        return;
+        exit (1);
 
     aux->item = item;    
     aux->ant = NULL;
@@ -60,11 +62,11 @@ void insere_fim (struct deque *d, char item){
     struct deque_nodo *aux;
 
     if (!d)
-        return;
+        exit (1);
 
     aux = malloc (sizeof (struct deque_nodo));
     if (!aux)
-        return;
+        exit (1);
 
     aux->item = item;    
     aux->prox = NULL;
@@ -93,28 +95,34 @@ int tam (struct deque *d){
     return d->tam;
 }
 
-void remove_ini (struct deque *d){
+char remove_ini (struct deque *d){
     struct deque_nodo *aux;
+    char aux_char;
 
     if (!d || !d->pri)
-        return;
+        exit (1);
 
+    aux_char = d->pri->item;
     aux = d->pri;
     d->pri = d->pri->prox;
     d->tam--;
     
     free (aux);
+    return aux_char;
 }
 
-void remove_fim (struct deque *d){
+char remove_fim (struct deque *d){
     struct deque_nodo *aux;
+    char aux_char;
 
     if (!d || !d->ult)
-        return;
+        exit (1);
 
+    aux_char = d->ult->item;
     aux = d->ult;
     d->ult = d->ult->ant;
     d->tam--;
 
     free(aux);
+    return aux_char;
 }

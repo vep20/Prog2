@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-
+#ifndef DEQUE
+#define DEQUE
 struct deque_nodo{
     char item;
     struct deque_nodo *ant;
@@ -26,10 +25,14 @@ void insere_inicio (struct deque *d, char c);
 void insere_fim (struct deque *d, char c);
 
 // função que remove um item no comeco de um deque (propriedade fila)
-void remove_ini (struct deque *d);
+// retorna o char (item) que o nodo armazenava 
+char remove_ini (struct deque *d);
 
 // função que remove um item no fim de um deque 
-void remove_fim (struct deque *d);
+// retorna o char (item) que o nodo armazenava 
+char remove_fim (struct deque *d);
 
 //função que retorna a quantidade de items que possui um deque
 int tam (struct deque *d);
+
+#endif

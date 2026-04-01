@@ -1,4 +1,4 @@
-victor;eduardo;cair;amar
-ontem;hj;amaha
-
-banana;maça;uva
+victor;programador;solteiro;azul
+gabriel;fisico;casado;verde
+mardoqueu;jogador;viuvo;naotenho
+andrey;professor;casado;preto
