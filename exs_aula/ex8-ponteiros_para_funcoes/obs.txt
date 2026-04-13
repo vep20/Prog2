@@ -1,0 +1,2 @@
+tipo_de_retorno (*nome_do_ponteiro) (tipo_do_argumento_1, ...)
+
