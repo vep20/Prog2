@@ -11,7 +11,7 @@
 //                    dos documentos
 
 int gbv_create (const char *filename){
-    FILE *aux; // ponteiro para manipulação de arquivo
+    FILE *aux_arq; // ponteiro para manipulação de arquivo
     int count;
     long dir_offset;
 
@@ -20,17 +20,17 @@ int gbv_create (const char *filename){
     dir_offset = sizeof (int) + sizeof (long); 
     
     // abre o arquivo passado para escrita em binario
-    aux = fopen (filename, "wb");
-    if (!aux)    
+    aux_arq = fopen (filename, "wb");
+    if (!aux_arq)    
         return 1; //retorna caso arquivo não seja criado ou resetado
 
     // grava o numero de documentos, no caso como esta vazio 0
-    fwrite (&count, sizeof (int), 1, aux);
+    fwrite (&count, sizeof (int), 1, aux_arq);
     
     // grava onde o diretorio inicia
-    fwrite (&dir_offset, sizeof (long), 1, aux);
+    fwrite (&dir_offset, sizeof (long), 1, aux_arq);
 
-    fclose (aux);
+    fclose (aux_arq);
     return 0;
 }
 
@@ -81,7 +81,30 @@ int gbv_list(const Library *lib){
 }
 
 int gbv_view(const Library *lib, const char *docname){
-        
+    FILE *aux_arq;
+    int indice;
+
+    if (!lib || !docname)
+        return 1;
+
+    indice = -1;
+
+    for (int i; i < lib->count; i++){
+        // comparação caracter a caracter para verificar se
+        // o documento esta na biblioteca
+        if (strcmp(lib->docs[i], docname) == 0){
+            indice = i;
+            break;// documento encontrado
+        }
+    }
+
+    if (indice == -1){
+        printf ("Documento não esta na biblioteca\n");
+        return 1; 
+    }
+
+    aux_arq = fopen (docname, "rb");
+
 }
 
 // int gbv_add(Library *lib, const char *archive, const char *docname);

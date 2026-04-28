@@ -37,6 +37,7 @@ int gbv_remove(Library *lib, const char *docname);
 // retorna em 1 em caso de falha e 0 em caso de sucesso
 int gbv_list(const Library *lib);
 
+// função para navegar no conteudo de um documento 
 int gbv_view(const Library *lib, const char *docname);
 int gbv_order(Library *lib, const char *archive, const char *criteria);
 
