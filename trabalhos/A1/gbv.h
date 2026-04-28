@@ -31,7 +31,12 @@ int gbv_open(Library *lib, const char *filename);
 
 int gbv_add(Library *lib, const char *archive, const char *docname);
 int gbv_remove(Library *lib, const char *docname);
+
+// função que lista os metadados dos arquivos 
+// recebe a biblioteca como parametro
+// retorna em 1 em caso de falha e 0 em caso de sucesso
 int gbv_list(const Library *lib);
+
 int gbv_view(const Library *lib, const char *docname);
 int gbv_order(Library *lib, const char *archive, const char *criteria);
 

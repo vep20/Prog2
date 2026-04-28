@@ -26,6 +26,7 @@ int gbv_create (const char *filename){
 
     // grava o numero de documentos, no caso como esta vazio 0
     fwrite (&count, sizeof (int), 1, aux);
+    
     // grava onde o diretorio inicia
     fwrite (&dir_offset, sizeof (long), 1, aux);
 
@@ -59,8 +60,30 @@ int gbv_open (Library *lib, const char *filename){
     return 0;
 }
 
+int gbv_list(const Library *lib){
+    char aux_buffer[30];
+
+    if (!lib)
+        return 1;
+
+    for(int i = 0; i < lib->count; i++){
+        printf ("Nome: %s\n", lib->docs[i].name);
+        printf ("Tamanho: %ld\n", lib->docs[i].size);
+
+        // impressão da data no formato padrão
+        format_date (lib->docs[i].date, aux_buffer, 30);
+        printf ("Data: %s\n", aux_buffer);
+
+        printf ("Offset: %ld\n", lib->docs[i].offset);
+    }
+
+    return 0; 
+}
+
+int gbv_view(const Library *lib, const char *docname){
+        
+}
+
 // int gbv_add(Library *lib, const char *archive, const char *docname);
 // int gbv_remove(Library *lib, const char *docname);
-// int gbv_list(const Library *lib);
-// int gbv_view(const Library *lib, const char *docname);
 // int gbv_order(Library *lib, const char *archive, const char *criteria);
