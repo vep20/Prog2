@@ -70,7 +70,7 @@ int gbv_list(const Library *lib){
         printf ("Nome: %s\n", lib->docs[i].name);
         printf ("Tamanho: %ld\n", lib->docs[i].size);
 
-        // impressão da data no formato padrão
+        // impressão da data no formato padrão exigido
         format_date (lib->docs[i].date, aux_buffer, 30);
         printf ("Data: %s\n", aux_buffer);
 
@@ -82,6 +82,7 @@ int gbv_list(const Library *lib){
 
 int gbv_view(const Library *lib, const char *docname){
     FILE *aux_arq;
+    long offset_inicial, tam_total, bytes;
     int indice;
 
     if (!lib || !docname)
@@ -92,7 +93,7 @@ int gbv_view(const Library *lib, const char *docname){
     for (int i; i < lib->count; i++){
         // comparação caracter a caracter para verificar se
         // o documento esta na biblioteca
-        if (strcmp(lib->docs[i], docname) == 0){
+        if (strcmp(lib->docs[i].name, docname) == 0){
             indice = i;
             break;// documento encontrado
         }
@@ -103,8 +104,30 @@ int gbv_view(const Library *lib, const char *docname){
         return 1; 
     }
 
-    aux_arq = fopen (docname, "rb");
+    // nome generico da biblioteca que sera procurada pelo função
+    // fopen, visto que o arquivo não pe passado como parametro
+    // assim como nas funções add, remove e order
+    aux_arq = fopen ("biblioteca.gbv", "rb");
+    if (!aux_arq){
+        printf ("Erro ao abrir arquivo da biblioteca\n");
+        return 1;
+    }
 
+    offset_inicial = lib->docs[indice].offset;
+    tam_total = lib->docs[indice].size;
+    bytes = 0; // aux de deslcoamento da navegação 
+
+    // loop para visualização por blocos 
+    while (1){
+        // mostra o bloco
+        printf ("\n--- Bloco: %s [%ld bytes] ---\n", docname, tam_total);
+
+        // posiciona o cursor do incicio do documento + o deslocamento da visu
+        fseek (aux_arq, offset_inicial + bytes, SEEK_SET);
+        
+    }
+    fclose(aux_arq);
+    return 0;
 }
 
 // int gbv_add(Library *lib, const char *archive, const char *docname);
