@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "gbv.h"
 
 int main(int argc, char *argv[]) {
-    
+
     if (argc < 3) {
         printf("Uso: %s <opção> <biblioteca> [documentos...]\n", argv[0]);
         return 1;
@@ -13,6 +14,17 @@ int main(int argc, char *argv[]) {
     const char *biblioteca = argv[2];
 
     Library lib;
+
+    // Alteracao: Criar a biblioteca se for inserção e ela não existir 
+    FILE *teste_existe;
+    teste_existe = fopen(biblioteca, "rb");
+
+    if (!teste_existe && strcmp(opcao, "-a") == 0) 
+        gbv_create(biblioteca);
+
+    else if (teste_existe)
+        fclose(teste_existe);
+
     if (gbv_open(&lib, biblioteca) != 0) {
         printf("Erro ao abrir biblioteca %s\n", biblioteca);
         return 1;
@@ -26,7 +38,7 @@ int main(int argc, char *argv[]) {
     
     else if (strcmp(opcao, "-r") == 0) {
         for (int i = 3; i < argc; i++) {
-            gbv_remove(&lib, argv[i]);
+            gbv_remove(&lib, biblioteca, argv[i]);
         }
     } 
     
@@ -35,7 +47,8 @@ int main(int argc, char *argv[]) {
     } 
     
     else if (strcmp(opcao, "-v") == 0 && argc >= 4) {
-        gbv_view(&lib, argv[3]);
+        gbv_view(&lib, biblioteca, argv[3]);// alteração realizada para receber
+                                            // paramentro 
     } 
     
     else if (strcmp(opcao, "-o") == 0 && argc >= 4) {
@@ -46,6 +59,11 @@ int main(int argc, char *argv[]) {
         printf("Opção inválida.\n");
     }
 
+    // alteracao: Liberar a memória do diretório antes de encerrar o programa
+    if (lib.docs != NULL) {
+        free(lib.docs);
+        lib.docs = NULL;
+    }
+
     return 0;
 }
-

@@ -29,16 +29,38 @@ int gbv_create(const char *filename);
 // retorna 1 em caso de falha e 0 em caso de sucesso
 int gbv_open(Library *lib, const char *filename);
 
+// função para adicionar um arquivo na biblioteca
+// recebe os metadados, a biblioteca e o novo arquivo
+// retorna 1 em caso de falha e 0 caso o arquivo tenha sido inserido
+// com sucesso na biblioteca
 int gbv_add(Library *lib, const char *archive, const char *docname);
-int gbv_remove(Library *lib, const char *docname);
+
+// função para remover o metadado do arquivo 
+// retorna 1 em caso de falha e 0 caso sucesso
+int gbv_remove(Library *lib, const char *archive, const char *docname);
 
 // função que lista os metadados dos arquivos 
 // recebe a biblioteca como parametro
 // retorna em 1 em caso de falha e 0 em caso de sucesso
 int gbv_list(const Library *lib);
 
+// função auxiliar para buscar o nome de um documento na biblioteca
+// retorna 1 caso o documento não esteja na bibliote ou o indice do vetor
+// de documentos caso sim
+int gbv_search (const Library *lib, const char *docname);
+
 // função para navegar no conteudo de um documento 
-int gbv_view(const Library *lib, const char *docname);
+int gbv_view(const Library *lib, const char *archive, const char *docname);
+ 
+
+// funções de comparação para o qsort
+int cmp_nome(const void *a, const void *b);
+int cmp_data(const void *a, const void *b);
+int cmp_tamanho(const void *a, const void *b);
+
+// função para reordena os documento da biblioteca, att o diretorio e refletindo
+// em nova ordem 
+// retorna 1 em caso de falha e 0 em caso de sucesso
 int gbv_order(Library *lib, const char *archive, const char *criteria);
 
 #endif
