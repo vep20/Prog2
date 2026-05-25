@@ -1,0 +1,4 @@
+compilação com allegro
+gcc $(pkg-config --cflags allegro-5) programa.c -o executavel $(pkg-config --libs allegro-5)
+
+gcc imagem.c -o test_imagem $(pkg-config --cflags --libs allegro-5 allegro_image-5)
