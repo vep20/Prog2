@@ -1,0 +1,20 @@
+AVALIAÇÃO 1 — GERENCIADOR MEMBOX
+
+GRR:20203937        
+
+NOME: Victor Eduardo de Paula
+
+
+ARQUIVOS ENTREGUES:
+
+- membox.c
+- main.c
+- util.c
+- util.h
+- LEIAME
+
+
+DIFICULDADES ENCONTRADAS:
+
+
+BUGS CONHECIDOS:
