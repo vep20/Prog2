@@ -1,0 +1,28 @@
+// outro metodos de realizar cadastro 
+// Cadastro dos cidadãos
+
+    // strcpy (novo_cidadao.id, "Neo");
+    // novo_cidadao.hacking = 90;
+    // novo_cidadao.criminalidade = 4;
+
+    // fwrite (novo_cidadao.id, sizeof (novo_cidadao.id), 1, arq);
+    // fwrite (&novo_cidadao.hacking, sizeof (novo_cidadao.hacking), 1, arq);
+    // fwrite (&novo_cidadao.criminalidade, sizeof (novo_cidadao.criminalidade), 1, arq);
+
+
+    // strcpy (novo_cidadao.id, "Trinity");
+    // novo_cidadao.hacking = 85;
+    // novo_cidadao.criminalidade = 7;
+
+    // fwrite (novo_cidadao.id, sizeof (novo_cidadao.id), 1, arq);
+    // fwrite (&novo_cidadao.hacking, sizeof (novo_cidadao.hacking), 1, arq);
+    // fwrite (&novo_cidadao.criminalidade, sizeof (novo_cidadao.criminalidade), 1, arq);
+
+
+    // strcpy (novo_cidadao.id, "Morpheus");
+    // novo_cidadao.hacking = 70;
+    // novo_cidadao.criminalidade = 8;
+
+    // fwrite (novo_cidadao.id, sizeof (novo_cidadao.id), 1, arq);
+    // fwrite (&novo_cidadao.hacking, sizeof (novo_cidadao.hacking), 1, arq);
+    // fwrite (&novo_cidadao.criminalidade, sizeof (novo_cidadao.criminalidade), 1, arq);
