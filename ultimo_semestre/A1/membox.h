@@ -5,16 +5,18 @@
 #define BUFFER_SIZE 512
 
 typedef struct {
-    char nome[MAX_NAME];
-    long tamanho;
-    long data;
-    long offset;
+    char nome[MAX_NAME]; 
+    long tamanho; // tamanho em bytes
+    long data; // data da insercao no container
+    long offset; // posicao no container
 } Arquivo;
 
 typedef struct {
     Arquivo *arquivos;
     int quantidade;
 } Diretorio;
+
+int cria_caixa (const char *nome);
 
 /*
  * Abre uma caixa existente.
