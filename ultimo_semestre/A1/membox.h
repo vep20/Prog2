@@ -16,11 +16,14 @@ typedef struct {
     int quantidade;
 } Diretorio;
 
-int cria_caixa (const char *nome);
+/*
+ * Cria uma caixa nova vazia 
+ */
+int cria_caixa(const char *nome);
 
 /*
  * Abre uma caixa existente.
- * Se a caixa não existir, cria uma caixa vazia.
+ * Se a caixa não existir, cria uma caixa vazia.    
  */
 int abrir_caixa(const char *nome, Diretorio *diretorio);
 
