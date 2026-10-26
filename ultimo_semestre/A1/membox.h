@@ -6,9 +6,9 @@
 
 typedef struct {
     char nome[MAX_NAME]; 
-    long tamanho; // tamanho em bytes
-    long data; // data da insercao no container
-    long offset; // posicao no container
+    long tamanho;    // tamanho em bytes
+    long data;       // data da insercao no container
+    long offset;     // posicao no container
 } Arquivo;
 
 typedef struct {
@@ -16,11 +16,14 @@ typedef struct {
     int quantidade;
 } Diretorio;
 
-int cria_caixa (const char *nome);
+/*
+ * Cria uma caixa nova vazia 
+ */
+int cria_caixa(const char *nome);
 
 /*
  * Abre uma caixa existente.
- * Se a caixa não existir, cria uma caixa vazia.
+ * Se a caixa não existir, cria uma caixa vazia.    
  */
 int abrir_caixa(const char *nome, Diretorio *diretorio);
 
@@ -28,6 +31,12 @@ int abrir_caixa(const char *nome, Diretorio *diretorio);
  * Fecha a caixa e libera a memória do diretório.
  */
 void fechar_caixa(Diretorio *diretorio);
+
+/*
+ * Verifica se um arquivo com o mesmo nome já existe no diretorio
+ * Devolve o indice onde o arquivo esta na lista e sera substituido
+*/
+int procura_arquivo (Diretorio *diretorio, const char *arquivo);
 
 /*
  * Adiciona um ou mais arquivos à caixa.

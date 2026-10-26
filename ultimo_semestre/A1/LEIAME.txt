@@ -11,10 +11,24 @@ ARQUIVOS ENTREGUES:
 - main.c
 - util.c
 - util.h
+- makefile
 - LEIAME
+- diretório testes_membox com os seguintes arquivos para teste:
+    . pequeno.txt;
+    . grande.txt;
+    . vazio.txt
 
 
-DIFICULDADES ENCONTRADAS:
+DIFICULDADES ENCONTRADAS: 
+    - Utilização do ponteiro de leitura escrita com as funcoes fseek, ftell e fread/fwrite;
+    - Entender para onde ir e quando retornar para determinadas areas da caixa e nos arquivos.
+    - Trabalhar com o limite de tamanho dos buffers, realizando a leitura e escrita dos arquivos 
+      em blocos, sem carregá-los inteiramente na memória.
+    - Controle dos offsets dos arquivos dentro da caixa e atualização da posição do diretório após 
+      as operações.
 
 
-BUGS CONHECIDOS:
+
+BUGS CONHECIDOS: 
+    - Arquivos removidos ou substituídos continuam ocupando espaço na caixa, permitido pelo enunciado,
+      mas caixa continua crescendo em tamanho

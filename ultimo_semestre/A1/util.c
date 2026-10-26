@@ -13,11 +13,13 @@ long tamanho_arquivo(const char *nome)
     if (arquivo == NULL)
         return -1;
 
+    // posiciona o ponteiro para o fim do arquivo e verifica se é valido
     if (fseek(arquivo, 0, SEEK_END) != 0) {
         fclose(arquivo);
         return -1;
     }
 
+    // retorna a posicao atual do ponteiro de leitura
     tamanho = ftell(arquivo);
 
     fclose(arquivo);
