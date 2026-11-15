@@ -1,8 +1,8 @@
 CC      = gcc
 # deve utilizar os comando shell para pegar os resultados de compilação
 # do allegro no terminal
-CFLAGS  = -Wall -Wextra -Werror -g -std=c99 $(shell pkg-config --cflags allegro-5 allegro_image-5)
-LDLIBS  = -lm $(shell pkg-config --libs allegro-5 allegro_image-5)
+CFLAGS = -Wall -Wextra -Werror -g -std=c99 $(shell pkg-config --cflags allegro-5 allegro_primitives-5 allegro_image-5)
+LDLIBS = -lm $(shell pkg-config --libs allegro-5 allegro_primitives-5 allegro_image-5)
 
 MAIN = main
 ENTREGA = $(MAIN)

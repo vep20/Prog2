@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "movimento.h"
 
 
@@ -8,12 +9,13 @@ struct movimentos *cria_movimentos (){
     elemento = (struct movimentos *) malloc (sizeof (struct movimentos));
     if (!elemento){
         fprintf (stderr, "erro ao criar estrutura de movimentos para o elemento\n");
+        return NULL;
     }
 
     // inicializa as variaveis de movimento do elemento
-    elemento->direita = 0;
     elemento->esquerda = 0;
-    elemento->em_pe = 0;
+    elemento->direita = 0;
+    // ** elemento->em_pe = 0;
     elemento->pulando = 0;
     elemento->abaixando = 0;
     elemento->interagindo = 0;
@@ -22,25 +24,27 @@ struct movimentos *cria_movimentos (){
 }
 
 void destroi_movimentos (struct movimentos *elemento){
+
     free (elemento);
+    elemento = NULL;
+}
+
+void esquerda (struct movimentos *elemento){
+
+    elemento->esquerda = elemento->esquerda ^ 1;
 }
 
 void direita (struct movimentos *elemento){
     elemento->direita = elemento->direita ^ 1;
 }
 
-void esquerda (struct movimentos *elemento){
-    elemento->esquerda = elemento->esquerda ^ 1;
-}
-
-
 void pulando (struct movimentos *elemento){
     elemento->pulando = elemento->pulando ^ 1;
 }
 
-void em_pe (struct movimentos *elemento){
-    elemento->em_pe = elemento->em_pe ^ 1; 
-}
+// ** void em_pe (struct movimentos *elemento){
+//     elemento->em_pe = elemento->em_pe ^ 1; 
+// }
 
 void abaixando (struct movimentos *elemento){
     elemento->abaixando = elemento->abaixando ^ 1;
