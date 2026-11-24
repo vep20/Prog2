@@ -5,22 +5,41 @@
 #include <allegro5/allegro_image.h> // para imagens
 #include <allegro5/allegro_audio.h> // para audio
 #include <allegro5/allegro_font.h> // para texto 
-#include <allegro5/allegro_primitives.h> // para formas
+#include <allegro5/allegro_primitives.h> // *** para formas. talvez removido
+#include <allegro5/allegro_image.h> // para imagens
+#include <allegro5/allegro_audio.h> // para sons
 #include <stdbool.h>
 #include "movimento.h"
 
-#define TELA_LARGURA 1920 // definicao padrao, *** provavelmente sera removido para ajustar com funcao
-#define TELA_ALTURA 1080
+// ********** #define TELA_LARGURA 1280 // definicao padrao, *** provavelmente sera removido para ajustar com funcao
+// ********** #define TELA_ALTURA 720 //definicao padrao, *** provavelmente sera removido para ajustar com funcao
 #define FPS 30.0
 #define TAM_MOVIMENTO 10 // tamanho do movimento do personagem 
+
+// estrutura auxiliar para o componentes basicos e necessarios para utilizacao do allegro no projeto
+struct componentes_allegro {
+    ALLEGRO_DISPLAY *tela;
+    ALLEGRO_TIMER *tempo;
+    ALLEGRO_EVENT_QUEUE *f_eventos;
+    ALLEGRO_FONT *texto;
+};
 
 // estrutura padrao do personagem 
  struct personagem {
     unsigned char tamanho; // tamanho do personagem 
     unsigned short largura; 
     unsigned short altura;
+    unsigned short vida;
     struct movimentos *controle; // elementos para controle do personagem 
+    ALLEGRO_BITMAP *imagem_atual;
 };
+
+// Funcao que incializa os componentes do allegro, 
+// Retorna 1 em caso de sucesso e 0 em caso de falha
+int inicia_allegro(struct componentes_allegro *al);
+
+// Funcao para limpar e destruir uma estrutura allegro 
+void destroi_allegro(struct componentes_allegro *al);
 
 // Funcao para criacao de um personagem seguindo valores pre definidos, 
 // Devolve uma estrutura de personagem preenchida em caso de sucesso
