@@ -107,7 +107,7 @@ void destroi_allegro(struct componentes_allegro *al){
 }
 
 struct personagem *cria_personagem (unsigned char tamanho, unsigned short largura, 
-                                    unsigned short altura, unsigned short max_largura,
+                                    float altura, unsigned short max_largura,
                                     unsigned short max_altura){
     struct personagem *novo_jogador;
     
@@ -127,10 +127,11 @@ struct personagem *cria_personagem (unsigned char tamanho, unsigned short largur
     }
 
     // preenche a estrutura 
+    novo_jogador->altura = altura;
+    novo_jogador->veloc_y = 0.0f;
     novo_jogador->tamanho = tamanho;
     novo_jogador->largura = largura;
-    novo_jogador->altura = altura;
-    novo_jogador->vida = 10;
+    novo_jogador->vida = 3;
     
     // tenta criar os movimentos para estrutura
     novo_jogador->controle = cria_movimentos ();
@@ -152,41 +153,30 @@ struct personagem *cria_personagem (unsigned char tamanho, unsigned short largur
 
 
 void movimentos_personagem (struct personagem *jogador, unsigned char movimentos, unsigned char trajetoria,
-                            unsigned short max_largura, unsigned short max_altura){
-                
-    switch (trajetoria){
+                            unsigned short max_largura){ 
+    int destino, limite;
 
+    if (!trajetoria){
         // verifica se e possivel a movimentacao em largura para esquerda
-        case 0:
-            if ((jogador->largura - movimentos * TAM_MOVIMENTO) - jogador->tamanho/2 >= 0){
+        if ((jogador->largura - movimentos * TAM_MOVIMENTO) - jogador->tamanho/2 >= 0){
                 jogador->largura -= movimentos * TAM_MOVIMENTO;
-            }
-            break;
-
-        // verifica se e possivel a movimentacao em largura para direita
-        case 1:
-            if ((jogador->largura + movimentos * TAM_MOVIMENTO) + jogador->tamanho/2 <= max_largura){
-                jogador->largura += movimentos * TAM_MOVIMENTO;
-            }
-            break;
-        
-        // verifica se e possivel a movimentacao em largura para cima        
-        case 2:
-            if ((jogador->altura - movimentos * TAM_MOVIMENTO) - jogador->tamanho/2 >= 0){
-                jogador->altura -= movimentos * TAM_MOVIMENTO;
-            }
-            break;
-
-        // verifica se e possivel a movimentacao em largura para baixo
-        case 3:
-            if ((jogador->altura + movimentos * TAM_MOVIMENTO) + jogador->tamanho/2 <= max_altura){
-                jogador->altura += movimentos * TAM_MOVIMENTO;
-            }
-            break;
-
-        default:
-            break;
+        }
     }
+    // trajetoria == 1 pois funcao movimento so trata deslocamento na horizontal
+    else{
+        destino = jogador->largura + movimentos * TAM_MOVIMENTO;
+        limite = max_largura - jogador->tamanho / 2;
+        if (limite >= 0){
+            if (destino < limite){
+                jogador->largura = destino;
+            } 
+            else{
+                jogador->largura = limite;
+            }
+
+        }
+    }
+                
 }
 
 void destroi_personagem (struct personagem *jogador){

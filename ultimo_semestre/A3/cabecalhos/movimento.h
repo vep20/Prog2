@@ -4,14 +4,16 @@
 struct movimentos {
     unsigned char esquerda;
     unsigned char direita;
-    // ** unsigned char em_pe;
     unsigned char pulando;
     unsigned char abaixando;
-    // ** unsigned char interagindo;
 };
 
+// Funcao para add valores de movimentos ao personagem
+// Retorna a estrurura movimento preenchida em caso de sucesso
+// Ou NULL em caso de falha 
 struct movimentos *cria_movimentos ();
 
+// Funcao para destruir uma estrutura movimento
 void destroi_movimentos (struct movimentos *elemento);
 
 // movimentacao basica do persongem
@@ -21,7 +23,5 @@ void pulando(struct movimentos *elemento, int pressionada);
 void abaixando(struct movimentos *elemento, int pressionada);
 void interagindo (struct movimentos *elemento);
 
-
-// ** void em_pe (struct movimentos *elemento);
 
 #endif

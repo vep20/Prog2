@@ -15,11 +15,9 @@ struct movimentos *cria_movimentos (){
     // inicializa as variaveis de movimento do elemento
     elemento->esquerda = 0;
     elemento->direita = 0;
-    // ** elemento->em_pe = 0;
     elemento->pulando = 0;
     elemento->abaixando = 0;
-    // ** elemento->interagindo = 0;
-
+    
     return elemento;
 }
 
@@ -68,13 +66,3 @@ void abaixando(struct movimentos *elemento, int pressionada) {
 
     elemento->abaixando = pressionada;
 }
-
-
-// ** void em_pe (struct movimentos *elemento){
-//     elemento->em_pe = elemento->em_pe ^ 1; 
-// }
-
-
-// ** void interagindo (struct movimentos *elemento){
-//     elemento->interagindo = elemento->interagindo ^ 1;
-// }
